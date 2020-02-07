@@ -1,0 +1,47 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port adau_clatchn -pg 1 -y -50 -defaultsOSRD
+preplace port DDR -pg 1 -y -390 -defaultsOSRD
+preplace port adau_cout -pg 1 -y -60 -defaultsOSRD
+preplace port adau_mclk -pg 1 -y 70 -defaultsOSRD
+preplace port adau_cclk -pg 1 -y -70 -defaultsOSRD
+preplace port led -pg 1 -y 100 -defaultsOSRD
+preplace port adau_cdata -pg 1 -y -30 -defaultsOSRD
+preplace port i2s_dac_sdata -pg 1 -y 160 -defaultsOSRD
+preplace port i2s_adc_sdata -pg 1 -y 170 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y -370 -defaultsOSRD
+preplace port i2s_lrclk -pg 1 -y 150 -defaultsOSRD
+preplace port i2s_bclk -pg 1 -y 130 -defaultsOSRD
+preplace inst i2s_data_0 -pg 1 -lvl 2 -y 160 -defaultsOSRD
+preplace inst adau_controller_0 -pg 1 -lvl 2 -y -120 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y -320 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 2 -y 10 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 160 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -y -260 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 1 2 320J -460 690J
+preplace netloc clk_wiz_0_locked 1 2 1 710
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 330J
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 1 370
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 -110 0 310
+preplace netloc ps7_0_axi_periph_M01_AXI 1 1 2 390 280 690
+preplace netloc adau_cout_1 1 0 2 -150J -130 NJ
+preplace netloc adau_controller_0_adau_cclk 1 2 1 750
+preplace netloc processing_system7_0_FIXED_IO 1 1 2 320J 260 730J
+preplace netloc i2s_lrclk_1 1 0 2 -130J 70 310J
+preplace netloc clk_wiz_0_clk_out1 1 2 1 720
+preplace netloc i2s_data_0_i2s_dac_sdata 1 2 1 N
+preplace netloc adau_controller_0_adau_clatchn 1 2 1 740
+preplace netloc adau_controller_0_adau_cdata 1 2 1 710
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 2 -120 -390 360
+preplace netloc ps7_0_axi_periph_M00_AXI 1 1 2 380 270 700
+preplace netloc i2s_adc_sdata_1 1 0 2 -140J 50 330J
+preplace netloc i2s_bclk_1 1 0 2 -150J 60 340J
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 350
+levelinfo -pg 1 -170 100 540 780 -top -470 -bot 460
+",
+}
+{
+   da_axi4_cnt: "4",
+   da_ps7_cnt: "1",
+}
