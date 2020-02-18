@@ -1,47 +1,57 @@
 {
    guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
 #  -string -flagsOSRD
-preplace port adau_clatchn -pg 1 -y -50 -defaultsOSRD
-preplace port DDR -pg 1 -y -390 -defaultsOSRD
-preplace port adau_cout -pg 1 -y -60 -defaultsOSRD
-preplace port adau_mclk -pg 1 -y 70 -defaultsOSRD
-preplace port adau_cclk -pg 1 -y -70 -defaultsOSRD
-preplace port led -pg 1 -y 100 -defaultsOSRD
-preplace port adau_cdata -pg 1 -y -30 -defaultsOSRD
-preplace port i2s_dac_sdata -pg 1 -y 160 -defaultsOSRD
-preplace port i2s_adc_sdata -pg 1 -y 170 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -y -370 -defaultsOSRD
-preplace port i2s_lrclk -pg 1 -y 150 -defaultsOSRD
-preplace port i2s_bclk -pg 1 -y 130 -defaultsOSRD
-preplace inst i2s_data_0 -pg 1 -lvl 2 -y 160 -defaultsOSRD
-preplace inst adau_controller_0 -pg 1 -lvl 2 -y -120 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y -320 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 2 -y 10 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 160 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 1 -y -260 -defaultsOSRD
-preplace netloc processing_system7_0_DDR 1 1 2 320J -460 690J
-preplace netloc clk_wiz_0_locked 1 2 1 710
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 330J
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 1 370
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 -110 0 310
-preplace netloc ps7_0_axi_periph_M01_AXI 1 1 2 390 280 690
-preplace netloc adau_cout_1 1 0 2 -150J -130 NJ
-preplace netloc adau_controller_0_adau_cclk 1 2 1 750
-preplace netloc processing_system7_0_FIXED_IO 1 1 2 320J 260 730J
-preplace netloc i2s_lrclk_1 1 0 2 -130J 70 310J
-preplace netloc clk_wiz_0_clk_out1 1 2 1 720
-preplace netloc i2s_data_0_i2s_dac_sdata 1 2 1 N
-preplace netloc adau_controller_0_adau_clatchn 1 2 1 740
-preplace netloc adau_controller_0_adau_cdata 1 2 1 710
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 2 -120 -390 360
-preplace netloc ps7_0_axi_periph_M00_AXI 1 1 2 380 270 700
-preplace netloc i2s_adc_sdata_1 1 0 2 -140J 50 330J
-preplace netloc i2s_bclk_1 1 0 2 -150J 60 340J
-preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 350
-levelinfo -pg 1 -170 100 540 780 -top -470 -bot 460
+preplace port DDR -pg 1 -y 80 -defaultsOSRD
+preplace port lrclk -pg 1 -y 570 -defaultsOSRD
+preplace port miso -pg 1 -y 200 -defaultsOSRD
+preplace port mosi -pg 1 -y 370 -defaultsOSRD
+preplace port led -pg 1 -y 650 -defaultsOSRD
+preplace port sdata -pg 1 -y 590 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 100 -defaultsOSRD
+preplace port bclk -pg 1 -y 550 -defaultsOSRD
+preplace port ss -pg 1 -y 390 -defaultsOSRD
+preplace port mclk -pg 1 -y 490 -defaultsOSRD
+preplace port sclk -pg 1 -y 410 -defaultsOSRD
+preplace inst myPrescaler_0 -pg 1 -lvl 4 -y 500 -defaultsOSRD
+preplace inst myPrescaler_1 -pg 1 -lvl 4 -y 650 -defaultsOSRD
+preplace inst i2s_transmitter_0 -pg 1 -lvl 5 -y 570 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 3 -y 170 -defaultsOSRD
+preplace inst spi_transmitter_0 -pg 1 -lvl 5 -y 380 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 4 -y 160 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 340 -defaultsOSRD
+preplace inst axi_fifo_mm_s_0 -pg 1 -lvl 4 -y 360 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 100 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 5 -y 160 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 5 1 NJ
+preplace netloc miso_1 1 0 5 NJ 200 NJ 200 700J 270 NJ 270 1460J
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 400 20 NJ 20 NJ 20 NJ 20 1910
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 4 380 190 710 260 1100 280 1450
+preplace netloc axi_smc_M00_AXI 1 4 1 1450
+preplace netloc spi_transmitter_0_M00_AXIS 1 3 3 1110 30 NJ 30 1920
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 20 10 NJ 10 NJ 10 NJ 10 NJ 10 1930
+preplace netloc axi_dma_0_M_AXI_SG 1 3 1 N
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 720
+preplace netloc axi_fifo_mm_s_0_AXI_STR_TXD 1 4 1 N
+preplace netloc i2s_transmitter_0_lrclk 1 5 1 NJ
+preplace netloc axi_dma_0_M_AXI_MM2S 1 3 1 N
+preplace netloc spi_transmitter_0_ss 1 5 1 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 5 1 NJ
+preplace netloc spi_transmitter_0_mosi 1 5 1 NJ
+preplace netloc axi_dma_0_mm2s_introut 1 3 2 1090 80 1490J
+preplace netloc myPrescaler_0_prescale 1 4 2 1490 490 NJ
+preplace netloc myPrescaler_1_prescale 1 4 2 NJ 650 NJ
+preplace netloc spi_transmitter_0_sclk 1 5 1 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 30 190 370 180 730 80 1080 70 1480 480 1910
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 3 2 1070J 240 1470
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 2 N 330 NJ
+preplace netloc i2s_transmitter_0_sdata 1 5 1 NJ
+preplace netloc i2s_transmitter_0_bclk 1 5 1 NJ
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 1 390
+levelinfo -pg 1 0 200 550 900 1280 1700 1950 -top 0 -bot 720
 ",
 }
 {
-   da_axi4_cnt: "4",
+   da_axi4_cnt: "10",
+   da_clkrst_cnt: "4",
    da_ps7_cnt: "1",
 }

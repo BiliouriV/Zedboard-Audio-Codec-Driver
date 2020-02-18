@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:09 MDT 2017
+# IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+# Start of session at: Wed Feb 12 13:49:59 2020
+# Process ID: 9988
+# Current directory: c:/drum_synthesis/drum_synthesis.tmp/i2s_data_v1_0_project/i2s_data_v1_0_project.runs/synth_1
+# Command line: vivado.exe -log i2s_data_v1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source i2s_data_v1_0.tcl
+# Log file: c:/drum_synthesis/drum_synthesis.tmp/i2s_data_v1_0_project/i2s_data_v1_0_project.runs/synth_1/i2s_data_v1_0.vds
+# Journal file: c:/drum_synthesis/drum_synthesis.tmp/i2s_data_v1_0_project/i2s_data_v1_0_project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source i2s_data_v1_0.tcl -notrace

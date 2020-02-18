@@ -1,0 +1,14 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port prescale -pg 1 -y 70 -defaultsOSRD
+preplace port clk -pg 1 -y 70 -defaultsOSRD
+preplace inst myPrescaler_0 -pg 1 -lvl 1 -y 70 -defaultsOSRD
+preplace netloc clk_1 1 0 1 N
+preplace netloc myPrescaler_0_prescale 1 1 1 N
+levelinfo -pg 1 -10 130 270 -top 0 -bot 260
+",
+}
+{
+   da_clkrst_cnt: "1",
+}

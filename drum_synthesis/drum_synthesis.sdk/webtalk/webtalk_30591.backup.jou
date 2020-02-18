@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:10 MDT 2017
+# 
+# Start of session at: Thu Feb 13 19:34:38 2020
+# Process ID: 30591
+# Current directory: /home/inf2015/vbiliouri/drum_synthesis/drum_synthesis.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/inf2015/vbiliouri/drum_synthesis/drum_synthesis.sdk/webtalk/webtalk.log
+# Journal file: /home/inf2015/vbiliouri/drum_synthesis/drum_synthesis.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
 -- Date        : Thu Feb  6 02:12:17 2020
 -- Host        : DESKTOP-TCE5RUO running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub {c:/Users/Victoria
---               Biliouris/drum_synthesis/drum_synthesis.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_100M_0/design_1_rst_ps7_0_100M_0_stub.vhdl}
+-- Command     : write_vhdl -force -mode synth_stub -rename_top design_1_rst_ps7_0_100M_0 -prefix
+--               design_1_rst_ps7_0_100M_0_ design_1_rst_ps7_0_100M_0_stub.vhdl
 -- Design      : design_1_rst_ps7_0_100M_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg484-1

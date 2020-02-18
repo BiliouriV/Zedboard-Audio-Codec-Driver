@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
--- Date        : Thu Feb  6 02:12:22 2020
+-- Date        : Wed Feb 12 16:43:49 2020
 -- Host        : DESKTOP-TCE5RUO running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim {c:/Users/Victoria
---               Biliouris/drum_synthesis/drum_synthesis.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0_sim_netlist.vhdl}
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_processing_system7_0_0 -prefix
+--               design_1_processing_system7_0_0_ design_1_processing_system7_0_0_sim_netlist.vhdl
 -- Design      : design_1_processing_system7_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -814,10 +814,8 @@ entity design_1_processing_system7_0_0_processing_system7_v5_5_processing_system
   attribute C_USE_S_AXI_HP3 of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is "design_1_processing_system7_0_0.hwdef";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is "processing_system7_v5_5_processing_system7";
   attribute POWER : string;
-  attribute POWER of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666667} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333313} readRate={0.5} writeRate={0.5} /><IO interface={GPIO_Bank_1} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={1} usageRate={0.5} /><IO interface={GPIO_Bank_0} ioStandard={LVCMOS33} bidis={10} ioBank={Vcco_p0} clockFreq={1} usageRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200.000000} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} />/>";
+  attribute POWER of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666667} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333313} readRate={0.5} writeRate={0.5} /><IO interface={GPIO_Bank_1} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={1} usageRate={0.5} /><IO interface={GPIO_Bank_0} ioStandard={LVCMOS33} bidis={10} ioBank={Vcco_p0} clockFreq={1} usageRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} />/>";
   attribute USE_TRACE_DATA_EDGE_DETECTOR : integer;
   attribute USE_TRACE_DATA_EDGE_DETECTOR of design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7 : entity is 0;
 end design_1_processing_system7_0_0_processing_system7_v5_5_processing_system7;
@@ -3404,6 +3402,46 @@ entity design_1_processing_system7_0_0 is
     M_AXI_GP0_BRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M_AXI_GP0_RRESP : in STD_LOGIC_VECTOR ( 1 downto 0 );
     M_AXI_GP0_RDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_GP0_ARREADY : out STD_LOGIC;
+    S_AXI_GP0_AWREADY : out STD_LOGIC;
+    S_AXI_GP0_BVALID : out STD_LOGIC;
+    S_AXI_GP0_RLAST : out STD_LOGIC;
+    S_AXI_GP0_RVALID : out STD_LOGIC;
+    S_AXI_GP0_WREADY : out STD_LOGIC;
+    S_AXI_GP0_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_GP0_BID : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_GP0_RID : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_GP0_ACLK : in STD_LOGIC;
+    S_AXI_GP0_ARVALID : in STD_LOGIC;
+    S_AXI_GP0_AWVALID : in STD_LOGIC;
+    S_AXI_GP0_BREADY : in STD_LOGIC;
+    S_AXI_GP0_RREADY : in STD_LOGIC;
+    S_AXI_GP0_WLAST : in STD_LOGIC;
+    S_AXI_GP0_WVALID : in STD_LOGIC;
+    S_AXI_GP0_ARBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_ARLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_ARSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_GP0_AWBURST : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_AWLOCK : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_GP0_AWSIZE : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_GP0_ARPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_GP0_AWPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_GP0_ARADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_GP0_AWADDR : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_GP0_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_GP0_ARCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_ARLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_ARQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_AWCACHE : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_AWLEN : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_AWQOS : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_GP0_ARID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_GP0_AWID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    S_AXI_GP0_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 0 to 0 );
     FCLK_CLK0 : out STD_LOGIC;
     FCLK_RESET0_N : out STD_LOGIC;
     MIO : inout STD_LOGIC_VECTOR ( 53 downto 0 );
@@ -3582,12 +3620,6 @@ architecture STRUCTURE of design_1_processing_system7_0_0 is
   signal NLW_inst_S_AXI_ACP_RVALID_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_ACP_WREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_GP0_ARESETN_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_ARREADY_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_AWREADY_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_BVALID_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_RLAST_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_RVALID_UNCONNECTED : STD_LOGIC;
-  signal NLW_inst_S_AXI_GP0_WREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_GP1_ARESETN_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_GP1_ARREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_S_AXI_GP1_AWREADY_UNCONNECTED : STD_LOGIC;
@@ -3679,11 +3711,6 @@ architecture STRUCTURE of design_1_processing_system7_0_0 is
   signal NLW_inst_S_AXI_ACP_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal NLW_inst_S_AXI_ACP_RID_UNCONNECTED : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_inst_S_AXI_ACP_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_S_AXI_GP0_BID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_S_AXI_GP0_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_inst_S_AXI_GP0_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal NLW_inst_S_AXI_GP0_RID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal NLW_inst_S_AXI_GP0_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_S_AXI_GP1_BID_UNCONNECTED : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal NLW_inst_S_AXI_GP1_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_inst_S_AXI_GP1_RDATA_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -3840,7 +3867,7 @@ architecture STRUCTURE of design_1_processing_system7_0_0 is
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of inst : label is "design_1_processing_system7_0_0.hwdef";
   attribute POWER : string;
-  attribute POWER of inst : label is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666667} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333313} readRate={0.5} writeRate={0.5} /><IO interface={GPIO_Bank_1} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={1} usageRate={0.5} /><IO interface={GPIO_Bank_0} ioStandard={LVCMOS33} bidis={10} ioBank={Vcco_p0} clockFreq={1} usageRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200.000000} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} />/>";
+  attribute POWER of inst : label is "<PROCESSOR name={system} numA9Cores={2} clockFreq={666.666667} load={0.5} /><MEMORY name={code} memType={DDR3} dataWidth={32} clockFreq={533.333313} readRate={0.5} writeRate={0.5} /><IO interface={GPIO_Bank_1} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={1} usageRate={0.5} /><IO interface={GPIO_Bank_0} ioStandard={LVCMOS33} bidis={10} ioBank={Vcco_p0} clockFreq={1} usageRate={0.5} /><IO interface={Timer} ioStandard={} bidis={0} ioBank={} clockFreq={111.111115} usageRate={0.5} /><IO interface={UART} ioStandard={LVCMOS18} bidis={2} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={SD} ioStandard={LVCMOS18} bidis={8} ioBank={Vcco_p1} clockFreq={50.000000} usageRate={0.5} /><IO interface={USB} ioStandard={LVCMOS18} bidis={12} ioBank={Vcco_p1} clockFreq={60} usageRate={0.5} /><IO interface={GigE} ioStandard={LVCMOS18} bidis={14} ioBank={Vcco_p1} clockFreq={125.000000} usageRate={0.5} /><IO interface={QSPI} ioStandard={LVCMOS33} bidis={6} ioBank={Vcco_p0} clockFreq={200} usageRate={0.5} /><PLL domain={Processor} vco={1333.333} /><PLL domain={Memory} vco={1066.667} /><PLL domain={IO} vco={1000.000} /><AXI interface={S_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} /><AXI interface={M_AXI_GP0} dataWidth={32} clockFreq={100} usageRate={0.5} />/>";
   attribute USE_TRACE_DATA_EDGE_DETECTOR : integer;
   attribute USE_TRACE_DATA_EDGE_DETECTOR of inst : label is 0;
 begin
@@ -4012,7 +4039,7 @@ inst: entity work.design_1_processing_system7_0_0_processing_system7_v5_5_proces
       I2C1_SDA_I => '0',
       I2C1_SDA_O => NLW_inst_I2C1_SDA_O_UNCONNECTED,
       I2C1_SDA_T => NLW_inst_I2C1_SDA_T_UNCONNECTED,
-      IRQ_F2P(0) => '0',
+      IRQ_F2P(0) => IRQ_F2P(0),
       IRQ_P2F_CAN0 => NLW_inst_IRQ_P2F_CAN0_UNCONNECTED,
       IRQ_P2F_CAN1 => NLW_inst_IRQ_P2F_CAN1_UNCONNECTED,
       IRQ_P2F_CTI => NLW_inst_IRQ_P2F_CTI_UNCONNECTED,
@@ -4227,46 +4254,46 @@ inst: entity work.design_1_processing_system7_0_0_processing_system7_v5_5_proces
       S_AXI_ACP_WREADY => NLW_inst_S_AXI_ACP_WREADY_UNCONNECTED,
       S_AXI_ACP_WSTRB(7 downto 0) => B"00000000",
       S_AXI_ACP_WVALID => '0',
-      S_AXI_GP0_ACLK => '0',
-      S_AXI_GP0_ARADDR(31 downto 0) => B"00000000000000000000000000000000",
-      S_AXI_GP0_ARBURST(1 downto 0) => B"00",
-      S_AXI_GP0_ARCACHE(3 downto 0) => B"0000",
+      S_AXI_GP0_ACLK => S_AXI_GP0_ACLK,
+      S_AXI_GP0_ARADDR(31 downto 0) => S_AXI_GP0_ARADDR(31 downto 0),
+      S_AXI_GP0_ARBURST(1 downto 0) => S_AXI_GP0_ARBURST(1 downto 0),
+      S_AXI_GP0_ARCACHE(3 downto 0) => S_AXI_GP0_ARCACHE(3 downto 0),
       S_AXI_GP0_ARESETN => NLW_inst_S_AXI_GP0_ARESETN_UNCONNECTED,
-      S_AXI_GP0_ARID(5 downto 0) => B"000000",
-      S_AXI_GP0_ARLEN(3 downto 0) => B"0000",
-      S_AXI_GP0_ARLOCK(1 downto 0) => B"00",
-      S_AXI_GP0_ARPROT(2 downto 0) => B"000",
-      S_AXI_GP0_ARQOS(3 downto 0) => B"0000",
-      S_AXI_GP0_ARREADY => NLW_inst_S_AXI_GP0_ARREADY_UNCONNECTED,
-      S_AXI_GP0_ARSIZE(2 downto 0) => B"000",
-      S_AXI_GP0_ARVALID => '0',
-      S_AXI_GP0_AWADDR(31 downto 0) => B"00000000000000000000000000000000",
-      S_AXI_GP0_AWBURST(1 downto 0) => B"00",
-      S_AXI_GP0_AWCACHE(3 downto 0) => B"0000",
-      S_AXI_GP0_AWID(5 downto 0) => B"000000",
-      S_AXI_GP0_AWLEN(3 downto 0) => B"0000",
-      S_AXI_GP0_AWLOCK(1 downto 0) => B"00",
-      S_AXI_GP0_AWPROT(2 downto 0) => B"000",
-      S_AXI_GP0_AWQOS(3 downto 0) => B"0000",
-      S_AXI_GP0_AWREADY => NLW_inst_S_AXI_GP0_AWREADY_UNCONNECTED,
-      S_AXI_GP0_AWSIZE(2 downto 0) => B"000",
-      S_AXI_GP0_AWVALID => '0',
-      S_AXI_GP0_BID(5 downto 0) => NLW_inst_S_AXI_GP0_BID_UNCONNECTED(5 downto 0),
-      S_AXI_GP0_BREADY => '0',
-      S_AXI_GP0_BRESP(1 downto 0) => NLW_inst_S_AXI_GP0_BRESP_UNCONNECTED(1 downto 0),
-      S_AXI_GP0_BVALID => NLW_inst_S_AXI_GP0_BVALID_UNCONNECTED,
-      S_AXI_GP0_RDATA(31 downto 0) => NLW_inst_S_AXI_GP0_RDATA_UNCONNECTED(31 downto 0),
-      S_AXI_GP0_RID(5 downto 0) => NLW_inst_S_AXI_GP0_RID_UNCONNECTED(5 downto 0),
-      S_AXI_GP0_RLAST => NLW_inst_S_AXI_GP0_RLAST_UNCONNECTED,
-      S_AXI_GP0_RREADY => '0',
-      S_AXI_GP0_RRESP(1 downto 0) => NLW_inst_S_AXI_GP0_RRESP_UNCONNECTED(1 downto 0),
-      S_AXI_GP0_RVALID => NLW_inst_S_AXI_GP0_RVALID_UNCONNECTED,
-      S_AXI_GP0_WDATA(31 downto 0) => B"00000000000000000000000000000000",
-      S_AXI_GP0_WID(5 downto 0) => B"000000",
-      S_AXI_GP0_WLAST => '0',
-      S_AXI_GP0_WREADY => NLW_inst_S_AXI_GP0_WREADY_UNCONNECTED,
-      S_AXI_GP0_WSTRB(3 downto 0) => B"0000",
-      S_AXI_GP0_WVALID => '0',
+      S_AXI_GP0_ARID(5 downto 0) => S_AXI_GP0_ARID(5 downto 0),
+      S_AXI_GP0_ARLEN(3 downto 0) => S_AXI_GP0_ARLEN(3 downto 0),
+      S_AXI_GP0_ARLOCK(1 downto 0) => S_AXI_GP0_ARLOCK(1 downto 0),
+      S_AXI_GP0_ARPROT(2 downto 0) => S_AXI_GP0_ARPROT(2 downto 0),
+      S_AXI_GP0_ARQOS(3 downto 0) => S_AXI_GP0_ARQOS(3 downto 0),
+      S_AXI_GP0_ARREADY => S_AXI_GP0_ARREADY,
+      S_AXI_GP0_ARSIZE(2 downto 0) => S_AXI_GP0_ARSIZE(2 downto 0),
+      S_AXI_GP0_ARVALID => S_AXI_GP0_ARVALID,
+      S_AXI_GP0_AWADDR(31 downto 0) => S_AXI_GP0_AWADDR(31 downto 0),
+      S_AXI_GP0_AWBURST(1 downto 0) => S_AXI_GP0_AWBURST(1 downto 0),
+      S_AXI_GP0_AWCACHE(3 downto 0) => S_AXI_GP0_AWCACHE(3 downto 0),
+      S_AXI_GP0_AWID(5 downto 0) => S_AXI_GP0_AWID(5 downto 0),
+      S_AXI_GP0_AWLEN(3 downto 0) => S_AXI_GP0_AWLEN(3 downto 0),
+      S_AXI_GP0_AWLOCK(1 downto 0) => S_AXI_GP0_AWLOCK(1 downto 0),
+      S_AXI_GP0_AWPROT(2 downto 0) => S_AXI_GP0_AWPROT(2 downto 0),
+      S_AXI_GP0_AWQOS(3 downto 0) => S_AXI_GP0_AWQOS(3 downto 0),
+      S_AXI_GP0_AWREADY => S_AXI_GP0_AWREADY,
+      S_AXI_GP0_AWSIZE(2 downto 0) => S_AXI_GP0_AWSIZE(2 downto 0),
+      S_AXI_GP0_AWVALID => S_AXI_GP0_AWVALID,
+      S_AXI_GP0_BID(5 downto 0) => S_AXI_GP0_BID(5 downto 0),
+      S_AXI_GP0_BREADY => S_AXI_GP0_BREADY,
+      S_AXI_GP0_BRESP(1 downto 0) => S_AXI_GP0_BRESP(1 downto 0),
+      S_AXI_GP0_BVALID => S_AXI_GP0_BVALID,
+      S_AXI_GP0_RDATA(31 downto 0) => S_AXI_GP0_RDATA(31 downto 0),
+      S_AXI_GP0_RID(5 downto 0) => S_AXI_GP0_RID(5 downto 0),
+      S_AXI_GP0_RLAST => S_AXI_GP0_RLAST,
+      S_AXI_GP0_RREADY => S_AXI_GP0_RREADY,
+      S_AXI_GP0_RRESP(1 downto 0) => S_AXI_GP0_RRESP(1 downto 0),
+      S_AXI_GP0_RVALID => S_AXI_GP0_RVALID,
+      S_AXI_GP0_WDATA(31 downto 0) => S_AXI_GP0_WDATA(31 downto 0),
+      S_AXI_GP0_WID(5 downto 0) => S_AXI_GP0_WID(5 downto 0),
+      S_AXI_GP0_WLAST => S_AXI_GP0_WLAST,
+      S_AXI_GP0_WREADY => S_AXI_GP0_WREADY,
+      S_AXI_GP0_WSTRB(3 downto 0) => S_AXI_GP0_WSTRB(3 downto 0),
+      S_AXI_GP0_WVALID => S_AXI_GP0_WVALID,
       S_AXI_GP1_ACLK => '0',
       S_AXI_GP1_ARADDR(31 downto 0) => B"00000000000000000000000000000000",
       S_AXI_GP1_ARBURST(1 downto 0) => B"00",

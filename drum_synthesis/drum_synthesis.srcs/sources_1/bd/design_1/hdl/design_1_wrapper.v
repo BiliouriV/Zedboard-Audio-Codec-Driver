@@ -1,8 +1,8 @@
 //Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
-//Date        : Sat Feb  8 01:35:31 2020
-//Host        : DESKTOP-TCE5RUO running 64-bit major release  (build 9200)
+//Tool Version: Vivado v.2017.2 (lin64) Build 1909853 Thu Jun 15 18:39:10 MDT 2017
+//Date        : Thu Feb 13 19:13:27 2020
+//Host        : linux-e4n3 running 64-bit openSUSE Leap 42.2
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
 //Purpose     : IP block netlist
@@ -31,16 +31,15 @@ module design_1_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    adau_cclk,
-    adau_cdata,
-    adau_clatchn,
-    adau_cout,
-    adau_mclk,
-    i2s_adc_sdata,
-    i2s_bclk,
-    i2s_dac_sdata,
-    i2s_lrclk,
-    led);
+    bclk,
+    led,
+    lrclk,
+    mclk,
+    miso,
+    mosi,
+    sclk,
+    sdata,
+    ss);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -62,16 +61,15 @@ module design_1_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output adau_cclk;
-  output adau_cdata;
-  output adau_clatchn;
-  input adau_cout;
-  output adau_mclk;
-  input i2s_adc_sdata;
-  input i2s_bclk;
-  output i2s_dac_sdata;
-  input i2s_lrclk;
+  output bclk;
   output led;
+  output lrclk;
+  output mclk;
+  input miso;
+  output mosi;
+  output sclk;
+  output sdata;
+  output ss;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -94,16 +92,15 @@ module design_1_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire adau_cclk;
-  wire adau_cdata;
-  wire adau_clatchn;
-  wire adau_cout;
-  wire adau_mclk;
-  wire i2s_adc_sdata;
-  wire i2s_bclk;
-  wire i2s_dac_sdata;
-  wire i2s_lrclk;
+  wire bclk;
   wire led;
+  wire lrclk;
+  wire mclk;
+  wire miso;
+  wire mosi;
+  wire sclk;
+  wire sdata;
+  wire ss;
 
   design_1 design_1_i
        (.DDR_addr(DDR_addr),
@@ -127,14 +124,13 @@ module design_1_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .adau_cclk(adau_cclk),
-        .adau_cdata(adau_cdata),
-        .adau_clatchn(adau_clatchn),
-        .adau_cout(adau_cout),
-        .adau_mclk(adau_mclk),
-        .i2s_adc_sdata(i2s_adc_sdata),
-        .i2s_bclk(i2s_bclk),
-        .i2s_dac_sdata(i2s_dac_sdata),
-        .i2s_lrclk(i2s_lrclk),
-        .led(led));
+        .bclk(bclk),
+        .led(led),
+        .lrclk(lrclk),
+        .mclk(mclk),
+        .miso(miso),
+        .mosi(mosi),
+        .sclk(sclk),
+        .sdata(sdata),
+        .ss(ss));
 endmodule

@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source design_1_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# myPrescaler, myPrescaler
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -158,39 +165,78 @@ proc create_root_design { parentCell } {
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
   # Create ports
-  set adau_cclk [ create_bd_port -dir O adau_cclk ]
-  set adau_cdata [ create_bd_port -dir O adau_cdata ]
-  set adau_clatchn [ create_bd_port -dir O adau_clatchn ]
-  set adau_cout [ create_bd_port -dir I adau_cout ]
-  set adau_mclk [ create_bd_port -dir O adau_mclk ]
-  set i2s_adc_sdata [ create_bd_port -dir I i2s_adc_sdata ]
-  set i2s_bclk [ create_bd_port -dir I i2s_bclk ]
-  set i2s_dac_sdata [ create_bd_port -dir O i2s_dac_sdata ]
-  set i2s_lrclk [ create_bd_port -dir I i2s_lrclk ]
+  set bclk [ create_bd_port -dir O bclk ]
   set led [ create_bd_port -dir O led ]
+  set lrclk [ create_bd_port -dir O lrclk ]
+  set mclk [ create_bd_port -dir O mclk ]
+  set miso [ create_bd_port -dir I miso ]
+  set mosi [ create_bd_port -dir O mosi ]
+  set sclk [ create_bd_port -dir O sclk ]
+  set sdata [ create_bd_port -dir O sdata ]
+  set ss [ create_bd_port -dir O ss ]
 
-  # Create instance: adau_controller_0, and set properties
-  set adau_controller_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:adau_controller:1.0 adau_controller_0 ]
-
-  # Create instance: clk_wiz_0, and set properties
-  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.4 clk_wiz_0 ]
+  # Create instance: axi_dma_0, and set properties
+  set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
-CONFIG.CLKOUT1_JITTER {305.592} \
-CONFIG.CLKOUT1_PHASE_ERROR {298.923} \
-CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {24.000} \
-CONFIG.MMCM_CLKFBOUT_MULT_F {50.250} \
-CONFIG.MMCM_CLKOUT0_DIVIDE_F {41.875} \
-CONFIG.MMCM_DIVCLK_DIVIDE {5} \
-CONFIG.RESET_PORT {resetn} \
-CONFIG.RESET_TYPE {ACTIVE_LOW} \
- ] $clk_wiz_0
+CONFIG.c_include_mm2s {1} \
+CONFIG.c_include_s2mm {0} \
+CONFIG.c_sg_include_stscntrl_strm {0} \
+CONFIG.c_sg_length_width {23} \
+ ] $axi_dma_0
 
-  # Create instance: i2s_data_0, and set properties
-  set i2s_data_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:i2s_data:1.0 i2s_data_0 ]
+  # Create instance: axi_fifo_mm_s_0, and set properties
+  set axi_fifo_mm_s_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_fifo_mm_s:4.1 axi_fifo_mm_s_0 ]
+  set_property -dict [ list \
+CONFIG.C_HAS_AXIS_TSTRB {true} \
+CONFIG.C_USE_TX_CTRL {0} \
+ ] $axi_fifo_mm_s_0
+
+  # Create instance: axi_smc, and set properties
+  set axi_smc [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 axi_smc ]
+  set_property -dict [ list \
+CONFIG.NUM_SI {2} \
+ ] $axi_smc
+
+  # Create instance: i2s_transmitter_0, and set properties
+  set i2s_transmitter_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:i2s_transmitter:1.0 i2s_transmitter_0 ]
+
+  # Create instance: myPrescaler_0, and set properties
+  set block_name myPrescaler
+  set block_cell_name myPrescaler_0
+  if { [catch {set myPrescaler_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $myPrescaler_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+CONFIG.CounterWidth {4} \
+CONFIG.ResetValue {4} \
+ ] $myPrescaler_0
+
+  # Create instance: myPrescaler_1, and set properties
+  set block_name myPrescaler
+  set block_cell_name myPrescaler_1
+  if { [catch {set myPrescaler_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $myPrescaler_1 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+    set_property -dict [ list \
+CONFIG.CounterWidth {25} \
+CONFIG.ResetValue {33554431} \
+ ] $myPrescaler_1
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
+CONFIG.PCW_IRQ_F2P_INTR {1} \
+CONFIG.PCW_QSPI_GRP_SINGLE_SS_ENABLE {1} \
+CONFIG.PCW_USE_FABRIC_INTERRUPT {1} \
+CONFIG.PCW_USE_S_AXI_GP0 {1} \
 CONFIG.preset {ZedBoard} \
  ] $processing_system7_0
 
@@ -203,32 +249,43 @@ CONFIG.NUM_MI {2} \
   # Create instance: rst_ps7_0_100M, and set properties
   set rst_ps7_0_100M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_100M ]
 
+  # Create instance: spi_transmitter_0, and set properties
+  set spi_transmitter_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:spi_transmitter:1.0 spi_transmitter_0 ]
+
   # Create interface connections
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXIS_MM2S [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] [get_bd_intf_pins i2s_transmitter_0/S00_AXIS]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_MM2S [get_bd_intf_pins axi_dma_0/M_AXI_MM2S] [get_bd_intf_pins axi_smc/S01_AXI]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_SG [get_bd_intf_pins axi_dma_0/M_AXI_SG] [get_bd_intf_pins axi_smc/S00_AXI]
+  connect_bd_intf_net -intf_net axi_fifo_mm_s_0_AXI_STR_TXD [get_bd_intf_pins axi_fifo_mm_s_0/AXI_STR_TXD] [get_bd_intf_pins spi_transmitter_0/S00_AXIS]
+  connect_bd_intf_net -intf_net axi_smc_M00_AXI [get_bd_intf_pins axi_smc/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_GP0]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins adau_controller_0/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins i2s_data_0/S00_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins axi_fifo_mm_s_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net spi_transmitter_0_M00_AXIS [get_bd_intf_pins axi_fifo_mm_s_0/AXI_STR_RXD] [get_bd_intf_pins spi_transmitter_0/M00_AXIS]
 
   # Create port connections
-  connect_bd_net -net adau_controller_0_adau_cclk [get_bd_ports adau_cclk] [get_bd_pins adau_controller_0/adau_cclk]
-  connect_bd_net -net adau_controller_0_adau_cdata [get_bd_ports adau_cdata] [get_bd_pins adau_controller_0/adau_cdata]
-  connect_bd_net -net adau_controller_0_adau_clatchn [get_bd_ports adau_clatchn] [get_bd_pins adau_controller_0/adau_clatchn]
-  connect_bd_net -net adau_cout_1 [get_bd_ports adau_cout] [get_bd_pins adau_controller_0/adau_cout]
-  connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_ports adau_mclk] [get_bd_pins clk_wiz_0/clk_out1]
-  connect_bd_net -net clk_wiz_0_locked [get_bd_ports led] [get_bd_pins clk_wiz_0/locked]
-  connect_bd_net -net i2s_adc_sdata_1 [get_bd_ports i2s_adc_sdata] [get_bd_pins i2s_data_0/i2s_adc_sdata]
-  connect_bd_net -net i2s_bclk_1 [get_bd_ports i2s_bclk] [get_bd_pins i2s_data_0/i2s_bclk]
-  connect_bd_net -net i2s_data_0_i2s_dac_sdata [get_bd_ports i2s_dac_sdata] [get_bd_pins i2s_data_0/i2s_dac_sdata]
-  connect_bd_net -net i2s_lrclk_1 [get_bd_ports i2s_lrclk] [get_bd_pins i2s_data_0/i2s_lrclk]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins adau_controller_0/s00_axi_aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins i2s_data_0/s00_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
-  connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins clk_wiz_0/resetn] [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
+  connect_bd_net -net axi_dma_0_mm2s_introut [get_bd_pins axi_dma_0/mm2s_introut] [get_bd_pins processing_system7_0/IRQ_F2P]
+  connect_bd_net -net i2s_transmitter_0_bclk [get_bd_ports bclk] [get_bd_pins i2s_transmitter_0/bclk]
+  connect_bd_net -net i2s_transmitter_0_lrclk [get_bd_ports lrclk] [get_bd_pins i2s_transmitter_0/lrclk]
+  connect_bd_net -net i2s_transmitter_0_sdata [get_bd_ports sdata] [get_bd_pins i2s_transmitter_0/sdata]
+  connect_bd_net -net miso_1 [get_bd_ports miso] [get_bd_pins spi_transmitter_0/miso]
+  connect_bd_net -net myPrescaler_0_prescale [get_bd_ports mclk] [get_bd_pins i2s_transmitter_0/mclk] [get_bd_pins myPrescaler_0/prescale]
+  connect_bd_net -net myPrescaler_1_prescale [get_bd_ports led] [get_bd_pins myPrescaler_1/prescale]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_fifo_mm_s_0/s_axi_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins i2s_transmitter_0/s00_axis_aclk] [get_bd_pins myPrescaler_0/clk] [get_bd_pins myPrescaler_1/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk] [get_bd_pins spi_transmitter_0/m00_axis_aclk] [get_bd_pins spi_transmitter_0/s00_axis_aclk]
+  connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_100M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins adau_controller_0/s00_axi_aresetn] [get_bd_pins i2s_data_0/s00_axi_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_fifo_mm_s_0/s_axi_aresetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins i2s_transmitter_0/s00_axis_aresetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn] [get_bd_pins spi_transmitter_0/m00_axis_aresetn] [get_bd_pins spi_transmitter_0/s00_axis_aresetn]
+  connect_bd_net -net spi_transmitter_0_mosi [get_bd_ports mosi] [get_bd_pins spi_transmitter_0/mosi]
+  connect_bd_net -net spi_transmitter_0_sclk [get_bd_ports sclk] [get_bd_pins spi_transmitter_0/sclk]
+  connect_bd_net -net spi_transmitter_0_ss [get_bd_ports ss] [get_bd_pins spi_transmitter_0/ss]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs adau_controller_0/S00_AXI/S00_AXI_reg] SEG_adau_controller_0_S00_AXI_reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C10000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs i2s_data_0/S00_AXI/S00_AXI_reg] SEG_i2s_data_0_S00_AXI_reg
+  create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_SG] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] SEG_processing_system7_0_GP0_DDR_LOWOCM
+  create_bd_addr_seg -range 0x20000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM] SEG_processing_system7_0_GP0_DDR_LOWOCM
+  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_fifo_mm_s_0/S_AXI/Mem0] SEG_axi_fifo_mm_s_0_Mem0
 
 
   # Restore current instance

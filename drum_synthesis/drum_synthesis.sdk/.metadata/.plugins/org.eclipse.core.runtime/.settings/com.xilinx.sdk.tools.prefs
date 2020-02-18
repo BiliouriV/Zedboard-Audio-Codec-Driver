@@ -1,0 +1,16 @@
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.bss=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.data=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.data1=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.fixup=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.rodata=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.rodata1=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.sbss=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.sbss2=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.sdata=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.sdata2=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:.text=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:heap=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:heap-size=400000000
+com.xilinx.sdk.linkgen.prefs.audio_controller\:stack=ps7_ddr_0
+com.xilinx.sdk.linkgen.prefs.audio_controller\:stack-size=1024
+eclipse.preferences.version=1
